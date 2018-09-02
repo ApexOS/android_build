@@ -213,6 +213,27 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   # Dump fingerprints
   script.Print("Target: {}".format(target_info.fingerprint))
 
+  android_version = target_info.GetBuildProp("ro.build.version.release")
+  build_id = target_info.GetBuildProp("ro.build.id")
+  build_date = target_info.GetBuildProp("ro.build.date")
+  security_patch = target_info.GetBuildProp("ro.build.version.security_patch")
+  device = target_info.GetBuildProp("ro.apex.device")
+
+  script.Print("======================================================");
+  script.Print("      _______                    _______________      ");
+  script.Print("      ___    |________________  ___  __ \_  ___/      ");
+  script.Print("      __  /| |__  __ \  _ \_  |/_/  / / /____ \       ");
+  script.Print("      _  ___ |_  /_/ /  __/_>  < / /_/ /____/ /       ");
+  script.Print("      /_/  |_|  .___/\___//_/|_| \____/ /____/        ");
+  script.Print("             /_/                                      ");
+  script.Print("===================#AndroidRevolution=================");
+  script.Print(" Android version: %s"%(android_version));
+  script.Print(" Build id: %s"%(build_id));
+  script.Print(" Build date: %s"%(build_date));
+  script.Print(" Security patch: %s"%(security_patch));
+  script.Print(" Device: %s"%(device));
+  script.Print("------------------------------------------------------");
+
   script.AppendExtra("ifelse(is_mounted(\"/system\"), unmount(\"/system\"));")
   device_specific.FullOTA_InstallBegin()
 
